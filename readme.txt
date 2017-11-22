@@ -1,11 +1,11 @@
 === Social Media Buttons ===
-Contributors: sayfulit, sayful
+Contributors: sayful
 Tags: widget, Facebook, Google Plus, LinkedIn, Twitter, Youtube, Pinterest, GitHub
 Requires at least: 3.5
-Tested up to: 4.8
-Stable tag: 1.2.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: 4.9
+Stable tag: 2.0.0
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
 A WordPress plugin that displays various social media button at Wordpress widgets area to find yourself.
 
@@ -35,17 +35,16 @@ After installation and activation the plugin.
 	<li>Youtube</li>
 	<li>Pinterest</li>
 	<li>GitHub</li>
-	<strong>New Icons from version 1.1.0</strong>
 	<li>Codepen</li>
 	<li>digg</li>
 	<li>dribbble</li>
-	<li>dropbox</li>
 	<li>flickr</li>
 	<li>foursquare</li>
 	<li>instagram</li>
 	<li>reddit</li>
 	<li>vimeo</li>
 	<li>wordpress</li>
+	<li>xing</li>
 	<li>email</li>
 </ul>
 

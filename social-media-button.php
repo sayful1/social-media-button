@@ -1,63 +1,54 @@
 <?php
 /**!
- * Plugin Name: 	Social Media Buttons
- * Plugin URI: 		https://wordpress.org/plugins/social-media-button/
- * Description: 	A WordPress plugin that displays various social media button at Wordpress widgets area.
- * Version: 		1.2.0
- * Author: 			Sayful Islam
- * Author URI: 		http://sayfulit.com
- * Text Domain: 	social-media-button
- * Domain Path: 	/languages/
- * License: 		GPLv2 or later
+ * Plugin Name: Social Media Buttons
+ * Plugin URI: https://wordpress.org/plugins/social-media-button/
+ * Description: A WordPress plugin that displays various social media button at WordPress widgets area.
+ * Version: 2.0.0
+ * Author: Sayful Islam
+ * Author URI: https://sayfulislam.com
+ *
+ * Text Domain: social-media-button
+ *
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  */
 
-if (!class_exists('Social_Media_Button')):
+if ( ! class_exists( 'Social_Media_Button' ) ) {
 
-class Social_Media_Button {
+	class Social_Media_Button {
 
-	/**
-	 * Instance of this class.
-	 *
-	 * @var object
-	 */
-	protected static $instance = null;
+		/**
+		 * Instance of this class.
+		 *
+		 * @var object
+		 */
+		protected static $instance = null;
 
-	public function __construct(){
-		add_action('admin_enqueue_scripts', array( $this, 'color_picker' ) );
+		/**
+		 * Return an instance of this class.
+		 *
+		 * @return object A single instance of this class.
+		 */
+		public static function init() {
+			// If the single instance hasn't been set, set it now.
+			if ( null == self::$instance ) {
+				self::$instance = new self;
+			}
 
-		$this->includes();
-	}
-
-	/**
-	 * Return an instance of this class.
-	 *
-	 * @return object A single instance of this class.
-	 */
-	public static function get_instance() {
-		// If the single instance hasn't been set, set it now.
-		if ( null == self::$instance ) {
-			self::$instance = new self;
+			return self::$instance;
 		}
 
-		return self::$instance;
-	}
-
-	public function color_picker( $hook )
-	{
-		if ('widgets.php' == $hook) {
-		    wp_enqueue_style( 'wp-color-picker' );
-		    wp_enqueue_script( 'wp-color-picker' );
+		public function __construct() {
+			$this->includes();
 		}
-	}
 
-	/**
-	 * include widget file
-	 */
-	public function includes(){
-		include_once( 'widget-social-media-button.php' );
+		/**
+		 * include widget file
+		 */
+		public function includes() {
+			include_once( 'widget-social-media-button.php' );
+		}
 	}
 }
 
-endif;
-
-Social_Media_Button::get_instance();
+Social_Media_Button::init();
