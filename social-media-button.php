@@ -2,16 +2,18 @@
 /**!
  * Plugin Name: Social Media Buttons
  * Plugin URI: https://wordpress.org/plugins/social-media-button/
- * Description: A WordPress plugin that displays various social media button at WordPress widgets area.
- * Version: 2.0.0
+ * Description: A WordPress plugin that displays various social media button at Wordpress widgets area.
+ * Version: 1.2.1
  * Author: Sayful Islam
- * Author URI: https://sayfulislam.com
- *
+ * Author URI: http://sayfulislam.com/
  * Text Domain: social-media-button
- *
- * License: GPLv3
- * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
+ * Domain Path: languages/
+ * License: GPLv2 or later
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	die; // If this file is called directly, abort.
+}
 
 if ( ! class_exists( 'Social_Media_Button' ) ) {
 
@@ -22,24 +24,30 @@ if ( ! class_exists( 'Social_Media_Button' ) ) {
 		 *
 		 * @var object
 		 */
-		protected static $instance = null;
+		private static $instance = null;
 
 		/**
 		 * Return an instance of this class.
 		 *
 		 * @return object A single instance of this class.
 		 */
-		public static function init() {
+		public static function get_instance() {
 			// If the single instance hasn't been set, set it now.
 			if ( null == self::$instance ) {
 				self::$instance = new self;
+
+				self::$instance->includes();
+				add_action( 'admin_enqueue_scripts', array( self::$instance, 'color_picker' ) );
 			}
 
 			return self::$instance;
 		}
 
-		public function __construct() {
-			$this->includes();
+		public function color_picker( $hook ) {
+			if ( 'widgets.php' == $hook ) {
+				wp_enqueue_style( 'wp-color-picker' );
+				wp_enqueue_script( 'wp-color-picker' );
+			}
 		}
 
 		/**
@@ -51,4 +59,4 @@ if ( ! class_exists( 'Social_Media_Button' ) ) {
 	}
 }
 
-Social_Media_Button::init();
+Social_Media_Button::get_instance();

@@ -1,1 +1,6 @@
-*.log
+# Folders
+.idea
+
+# Files
+**.log
+**.map
